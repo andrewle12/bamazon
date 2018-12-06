@@ -67,12 +67,30 @@ function start() {
         if(answer.amount<=res[item].stock_quantity){
             console.log("Got it, order placed!");
             runningPrice+=parseFloat(res[item].price*answer.amount);
+            runningPrice = Math.round(runningPrice * 100) / 100;
             runningStock+=parseInt(answer.amount);
         } else {
             console.log("Sorry, we don't have enough in stock");
         }
         console.log("Your current total for these "+runningStock+" items is $"+runningPrice);
-
+        inquirer
+        .prompt([
+          {
+            name: "continue",
+            type: "input",
+            message:
+              "Continue Shopping? (Y/N)",
+            default: "Y"
+          }
+         
+        ]).then(function(answer){
+            if(answer.continue==="Y"){
+                start();
+                
+            }else{
+                console.log("Your final total for these "+runningStock+" items is $"+runningPrice+"\nHave a nice day!");
+            }
+        })
     });
   });
 
