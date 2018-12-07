@@ -5,6 +5,7 @@
 * mySQL
 * Inquirer
 * Be sure to run npm install to download the necessary node modules before running the application!
+* Use node bamazon.js to begin the application
 
 ## Description
 
