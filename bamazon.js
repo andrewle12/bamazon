@@ -1,7 +1,6 @@
 //Dependencies
 var mysql = require("mysql");
 var inquirer = require("inquirer");
-var fs = require("fs");
 
 //Connection for the mySQL Database and server
 var connection = mysql.createConnection({
@@ -92,6 +91,7 @@ function start() {
                 
             }else{
                 console.log("Your final total for these "+runningStock+" items is $"+runningPrice+"\nHave a nice day!");
+                connection.end();
             }
         })
     });
