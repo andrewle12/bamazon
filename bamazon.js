@@ -1,6 +1,7 @@
 //Dependencies
 var mysql = require("mysql");
 var inquirer = require("inquirer");
+var fs = require("fs");
 
 //Connection for the mySQL Database and server
 var connection = mysql.createConnection({
@@ -65,10 +66,12 @@ function start() {
     .then(function(answer) {
       var item = parseInt(answer.item)-1;
         if(answer.amount<=res[item].stock_quantity){
+            var newQuantity = res[item].stock_quantity-answer.amount;
             console.log("Got it, order placed!");
             runningPrice+=parseFloat(res[item].price*answer.amount);
             runningPrice = Math.round(runningPrice * 100) / 100;
             runningStock+=parseInt(answer.amount);
+            updateTable(newQuantity, answer.item);
         } else {
             console.log("Sorry, we don't have enough in stock");
         }
@@ -94,4 +97,22 @@ function start() {
     });
   });
 
+}
+
+//Function to update SQL table
+function updateTable(updatedStock, ID){
+    connection.query(
+        "UPDATE products SET ? WHERE ?",
+        [
+          {
+            stock_quantity: updatedStock
+          },
+          {
+            item_id: ID
+          }
+        ],
+        function(error, res) {
+          if (error) throw err;
+        }
+      );
 }

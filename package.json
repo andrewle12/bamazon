@@ -4,6 +4,7 @@
   "description": "An Amazon-like storefront where users can purchase items from the inventory",
   "main": "bamazon.js",
   "dependencies": {
+    "fs": "0.0.1-security",
     "inquirer": "^6.2.1",
     "mysql": "^2.16.0"
   },
