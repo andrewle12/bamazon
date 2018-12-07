@@ -30,6 +30,11 @@ When the user answers "N" to finish shopping, they are presented with the final 
 ![Checkout Screen](/images/Capture4.PNG)
 
 
+If the user requests more of an item than there is in stock, an error message is displayed.
+![Sorry Screen](/images/Capture5.PNG)
+
+
+
 ## Author
 Andrew Le
 
